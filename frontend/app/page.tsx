@@ -28,7 +28,16 @@ export default function Home() {
             placeholder="Enter website URL (e.g. https://latindancepassion.ch)" 
             className="w-full bg-white/5 border border-white/10 rounded-3xl py-6 px-8 text-xl focus:outline-none focus:border-[#00f2ff] focus:ring-1 focus:ring-[#00f2ff] transition-all shadow-2xl"
           />
-          <button className="absolute right-3 top-3 bottom-3 bg-gradient-to-r from-[#00f2ff] to-[#7000ff] text-black font-bold px-8 rounded-2xl hover:scale-105 transition-transform">
+          <button 
+            onClick={async () => {
+              const url = document.querySelector('input').value;
+              const res = await fetch(`http://localhost:8000/audit?url=${url}`);
+              const data = await res.json();
+              alert('Auditoría Realizada: ' + data.type);
+              // Aquí se actualizaría el estado con data.ai_analysis
+            }}
+            className="absolute right-3 top-3 bottom-3 bg-gradient-to-r from-[#00f2ff] to-[#7000ff] text-black font-bold px-8 rounded-2xl hover:scale-105 transition-transform"
+          >
             RUN AUDIT
           </button>
         </div>
