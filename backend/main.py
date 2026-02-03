@@ -42,7 +42,7 @@ async def get_ai_analysis(pages_data, biz_type):
     Responde en formato JSON plano con las llaves: eeat_advice, geo_analysis, tech_fail.
     """
     
-    model = genai.GenerativeModel('gemini-1.5-flash')
+    model = genai.GenerativeModel('gemini-2.0-flash-exp')
     response = model.generate_content(prompt)
     try:
         return json.loads(response.text.replace('```json', '').replace('```', ''))
